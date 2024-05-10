@@ -247,5 +247,6 @@ FROM inventory
 		ON inventory.classification_id = classification.classification_id
 WHERE classification_name LIKE 'Sport';
 
-SET inv_image = REPLACE(inv_image, '/images', 'images/vehicles'),
+UPDATE inventory
 	inv_thumbnail = REPLACE(inv_thumbnail, '/images', '/images/vehicles');
+SET inv_image = REPLACE(inv_image, '/images', 'images/vehicles'),
