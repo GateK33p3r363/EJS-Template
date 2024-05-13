@@ -1,3 +1,5 @@
+<% include navigation.ejs %>
+<%- messages() %>
 <body>
     <h1>Welcome to CSE Motors</h1>
         <img src="delorean.jpg">
@@ -26,4 +28,18 @@
             <l4>"The most futuristic ride of our day." (4.5/5)</l4>
             <l5>"80's livin and I love it!" (5/5)</l5>
         </ul>
+    
+        <ul>
+            <% data.forEach(item => { %>
+              <li>
+                <img src="<%= item.inv_thumbnail %>" alt="<%= item.inv_description %>">
+                <p><%= item.inv_make %> <%= item.inv_model %> (<%= item.inv_year %>)</p>
+                <p><%= item.inv_description %></p>
+                <p>Price: $<%= item.inv_price %></p>
+                <p>Miles: <%= item.inv_miles %></p>
+                <p>Color: <%= item.inv_color %></p>
+              </li>
+            <% }); %>
+          </ul>
+
 </body>
