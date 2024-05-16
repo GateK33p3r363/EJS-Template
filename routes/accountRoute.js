@@ -24,3 +24,11 @@ router.get('/', (req, res) => {
 
 // Export the router
 module.exports = router;
+
+// Process the login attempt
+router.post(
+  "/login",
+  (req, res) => {
+    res.status(200).send('login process')
+  }
+)
