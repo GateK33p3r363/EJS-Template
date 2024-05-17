@@ -1,0 +1,74 @@
+<!-- views/inventory/add-inventory.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Inventory</title>
+    <script>
+        // Client-side validation
+        function validateForm() {
+            var make = document.getElementById("make").value;
+            var model = document.getElementById("model").value;
+            var year = document.getElementById("year").value;
+            var price = document.getElementById("price").value;
+
+            // Add additional validation for other fields if needed
+
+            if (make.trim() === "" || model.trim() === "" || year.trim() === "" || price.trim() === "") {
+                alert("All fields are required");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Add Inventory</h1>
+    
+    <!-- Display flash messages and errors -->
+    <% if (typeof flash !== 'undefined' && flash.length > 0) { %>
+        <div class="flash-messages">
+            <% flash.forEach(function(message) { %>
+                <div class="flash-message"><%= message %></div>
+            <% }); %>
+        </div>
+    <% } %>
+    <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+        <div class="error-messages">
+            <% errors.forEach(function(error) { %>
+                <div class="error-message"><%= error %></div>
+            <% }); %>
+        </div>
+    <% } %>
+
+    <!-- Add Inventory Form -->
+    <form action="/inventory/add-inventory" method="post" onsubmit="return validateForm()">
+        <label for="make">Make:</label>
+        <input type="text" id="make" name="make" required><br>
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" required><br>
+        <label for="year">Year:</label>
+        <input type="text" id="year" name="year" required><br>
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" required><br>
+        
+        <!-- Classification Select List -->
+        <label for="classification_id">Classification:</label>
+        <%= classificationList %> <!-- Util function to dynamically populate classification options -->
+        
+        <!-- Image Path -->
+        <label for="imagePath">Image Path:</label>
+        <input type="text" id="imagePath" name="imagePath"><br>
+
+        <!-- Thumbnail Path -->
+        <label for="thumbnailPath">Thumbnail Path:</label>
+        <input type="text" id="thumbnailPath" name="thumbnailPath"><br>
+        
+        <button type="submit">Add Inventory</button>
+    </form>
+</body>
+</html>
+
+<!-- END OF LINE -->

@@ -1,0 +1,53 @@
+<!-- views/inventory/add-classification.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Classification</title>
+    <script>
+        // Client-side validation
+        function validateForm() {
+            var classificationName = document.getElementById("classificationName").value;
+            if (classificationName.trim() === "") {
+                alert("Classification name cannot be empty");
+                return false;
+            }
+            if (/\s/.test(classificationName)) {
+                alert("Classification name cannot contain spaces");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Add Classification</h1>
+    
+    <!-- Display flash messages and errors -->
+    <% if (typeof flash !== 'undefined' && flash.length > 0) { %>
+        <div class="flash-messages">
+            <% flash.forEach(function(message) { %>
+                <div class="flash-message"><%= message %></div>
+            <% }); %>
+        </div>
+    <% } %>
+    <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+        <div class="error-messages">
+            <% errors.forEach(function(error) { %>
+                <div class="error-message"><%= error %></div>
+            <% }); %>
+        </div>
+    <% } %>
+
+    <!-- Add Classification Form -->
+    <form action="/inventory/add-classification" method="post" onsubmit="return validateForm()">
+        <label for="classificationName">Classification Name:</label>
+        <input type="text" id="classificationName" name="classificationName" required>
+        <button type="submit">Add Classification</button>
+    </form>
+</body>
+</html>
+
+<!-- END OF LINE -->
