@@ -22,13 +22,15 @@ router.get('/', (req, res) => {
     router.post('/register', utilities.handleErrors(accountController.registerAccount))
 });
 
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
+
 // Export the router
 module.exports = router;
 
 // Process the login attempt
 router.post(
   "/login",
-  (req, res) => {
-    res.status(200).send('login process')
-  }
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
 )
