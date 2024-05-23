@@ -1,0 +1,41 @@
+<!-- views/inventory/edit-inventory.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Confirmation</title>
+</head>
+<body>
+    <h1>Confirm Deletion</h1>
+    <p>The delete is permanent.</p>
+    <form action="/routes/inventoryRoute.js" method="POST">
+        <!-- Hidden input to pass inv_id -->
+        <input type="hidden" name="inv_id" value="<%= inv._id %>">
+        
+        <!-- Content labels and inputs -->
+        <div>
+            <label for="make">Make:</label>
+            <input type="text" id="make" name="make" value="<%= inv.make %>" readonly>
+        </div>
+        <div>
+            <label for="model">Model:</label>
+            <input type="text" id="model" name="model" value="<%= inv.model %>" readonly>
+        </div>
+        <div>
+            <label for="year">Year:</label>
+            <input type="text" id="year" name="year" value="<%= inv.year %>" readonly>
+        </div>
+        <div>
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" value="<%= inv.price %>" readonly>
+        </div>
+        
+        <!-- Submit button -->
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>
+
+<!-- END OF LINE -->
