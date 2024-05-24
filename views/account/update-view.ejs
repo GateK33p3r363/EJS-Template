@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Account</title>
+    <style>
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+        .message {
+            color: green;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Update Account</h1>
+    
+    <!-- Errors -->
+    <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+        <div class="error">
+            <% errors.forEach(function(error) { %>
+                <%= error.msg %><br>
+            <% }); %>
+        </div>
+    <% } %>
+
+    <!-- Message -->
+    <% if (typeof message !== 'undefined' && message !== '') { %>
+        <div class="message">
+            <%= message %>
+        </div>
+    <% } %>
+
+    <!-- Account Update Form -->
+    <form action="/account/update" method="POST">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" value="<%= firstName %>" required>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" value="<%= lastName %>" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="<%= email %>" required>
+        <input type="hidden" name="accountId" value="<%= accountId %>">
+        <input type="submit" value="Update Account">
+    </form>
+
+    <!-- Change Password Form -->
+    <form action="/account/change-password" method="POST">
+        <label for="newPassword">New Password:</label>
+        <input type="password" id="newPassword" name="newPassword" required>
+        <p>Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.</p>
+        <input type="hidden" name="accountId" value="<%= accountId %>">
+        <input type="submit" value="Change Password">
+    </form>
+</body>
+</html>
+
+<!-- END OF LINE -->
