@@ -33,13 +33,15 @@
         </div>
         <button type="submit">Register</button>
     </form>
+
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+    <% } %>
+
 </body>
 </html>
 
-<% if (errors) { %>
-    <ul class="notice">
-   <% errors.array().forEach(error => { %>
-     <li><%= error.msg %></li>
-  <%  }) %>
-   </ul>
-  <% } %>
